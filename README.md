@@ -4,6 +4,20 @@ Forked from [fogleman/primitive](https://github.com/fogleman/primitive), with a 
 scoring/placement enhancements ported over from a Python prototype and rewritten
 natively in Go.
 
+## Examples
+
+**Mt. Rainier** — reconstruction at ~100k shapes (combo mode) vs. build-up process:
+
+| Original vs. reconstruction | Build-up process |
+|---|---|
+| ![Rainier comparison](examples/rainier_comparison.png) | ![Rainier build-up](examples/rainier_demo.gif) |
+
+**Boba** — reconstruction at 10k shapes (combo mode) vs. build-up process:
+
+| Original vs. reconstruction | Build-up process |
+|---|---|
+| ![Boba comparison](examples/boba_comparison.png) | ![Boba build-up](examples/boba_demo.gif) |
+
 ## Dependencies
 
 - `github.com/fogleman/gg` — 2D graphics context
