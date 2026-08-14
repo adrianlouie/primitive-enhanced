@@ -1,0 +1,12 @@
+# Compiled binaries
+/primitive-enhanced
+
+# Generated output (images/gifs from running the tool)
+/output/
+
+# OS cruft
+.DS_Store
+
+# Local AI-assistant config/notes — not for the public repo
+CLAUDE.md
+.claude/
