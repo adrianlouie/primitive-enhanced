@@ -20,9 +20,8 @@ natively in Go.
 - `github.com/golang/freetype` — anti-aliased rasterization
 - `golang.org/x/image` — image math utilities
 - `github.com/nfnt/resize` — image resizing
-- **ImageMagick (`convert` on `$PATH`)** — required only for `.gif` output. PNG/JPG/SVG
-  output has no external dependency. Install with `brew install imagemagick` (macOS) or
-  `apt install imagemagick` (Debian/Ubuntu).
+
+No external (non-Go) tools required — PNG/JPG/SVG/GIF output all work out of the box.
 
 ## How to run
 
@@ -45,7 +44,7 @@ go build -o primitive-enhanced .
 # Disable Lab scoring (faster, less perceptual accuracy)
 ./primitive-enhanced -i photo.jpg -o output/result.png -n 500 -no-lab
 
-# Animated GIF showing shapes being added over time (requires ImageMagick)
+# Animated GIF showing shapes being added over time
 ./primitive-enhanced -i photo.jpg -o output/result.gif -n 200
 
 # All shape modes: 0=combo 1=triangle 2=rect 3=ellipse 4=circle
@@ -144,7 +143,3 @@ Primitive/
 - **3-phase annealing** produces better results than fixed-size shapes because large shapes
   fill broad color regions first, then progressively smaller shapes add detail.
 
-## Known limitations
-
-- `.gif` output shells out to ImageMagick's `convert`; if it's not on `$PATH` the run
-  fails with a clear error after computing all shapes (no partial/corrupt output).

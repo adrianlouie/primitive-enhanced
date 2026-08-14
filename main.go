@@ -235,7 +235,7 @@ func main() {
 						check(primitive.SaveFile(path, model.SVG()))
 					case ".gif":
 						frames := model.Frames(0.001)
-						check(primitive.SaveGIFImageMagick(path, frames, 50, 250))
+						check(primitive.SaveGIF(path, frames, 50, 250))
 					}
 				}
 			}
