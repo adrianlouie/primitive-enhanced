@@ -6,7 +6,7 @@ natively in Go.
 
 ## Examples
 
-**Boba** — original vs. reconstruction (10k shapes, combo mode):
+**Boba** — original vs. reconstruction (500 shapes, combo mode):
 
 ![Boba comparison](examples/boba_comparison.png)
 
