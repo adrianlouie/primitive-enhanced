@@ -1,4 +1,4 @@
-# Primitive — Go + Enhanced Hill Climbing Image Reconstruction
+# Primitive - Go + Enhanced Hill Climbing Image Reconstruction
 
 Forked from [fogleman/primitive](https://github.com/fogleman/primitive), with a set of
 scoring/placement enhancements ported over from a Python prototype and rewritten
@@ -6,22 +6,22 @@ natively in Go.
 
 ## Examples
 
-**Boba** — original vs. reconstruction (500 shapes, combo mode):
+**Boba** - original vs. reconstruction (500 shapes, combo mode):
 
 ![Boba comparison](examples/boba_comparison.png)
 
-**Mt. Rainier** — original vs. reconstruction (~100k shapes, combo mode):
+**Mt. Rainier** - original vs. reconstruction (~100k shapes, combo mode):
 
 ![Rainier comparison](examples/rainier_comparison.png)
 
 ## Dependencies
 
-- `github.com/fogleman/gg` — 2D graphics context
-- `github.com/golang/freetype` — anti-aliased rasterization
-- `golang.org/x/image` — image math utilities
-- `github.com/nfnt/resize` — image resizing
+- `github.com/fogleman/gg` - 2D graphics context
+- `github.com/golang/freetype` - anti-aliased rasterization
+- `golang.org/x/image` - image math utilities
+- `github.com/nfnt/resize` - image resizing
 
-No external (non-Go) tools required — PNG/JPG/SVG/GIF output all work out of the box.
+No external (non-Go) tools required - PNG/JPG/SVG/GIF output all work out of the box.
 
 ## How to run
 
@@ -32,7 +32,7 @@ go build -o primitive-enhanced .
 # Run with triangles (default)
 ./primitive-enhanced -i photo.jpg -o output/result.png -n 500
 
-# Combo mode — randomly mixes all 8 shape types (triangle, rect, ellipse,
+# Combo mode - randomly mixes all 8 shape types (triangle, rect, ellipse,
 # circle, rotated rect, bezier, rotated ellipse, polygon), picking a
 # different one each step. Usually the best starting point if you're not
 # sure which single shape suits your image.
@@ -51,40 +51,40 @@ go build -o primitive-enhanced .
 #   5=rotatedrect 6=beziers 7=rotatedellipse 8=polygon
 
 # Outputs:
-#   output/result.png              — final reconstruction
-#   output/result_comparison.png   — side-by-side (original | reconstruction)
+#   output/result.png              - final reconstruction
+#   output/result_comparison.png   - side-by-side (original | reconstruction)
 ```
 
 ## Project structure
 
 ```
 Primitive/
-├── main.go                    — CLI entry point, progress display
-├── go.mod / go.sum            — Go module dependencies
-├── primitive-enhanced         — compiled binary
+├── main.go                    - CLI entry point, progress display
+├── go.mod / go.sum            - Go module dependencies
+├── primitive-enhanced         - compiled binary
 ├── primitive/
-│   ├── model.go               — orchestrator: annealing, error/edge maps, winner refinement
-│   ├── worker.go              — parallel workers: biased placement, Lab scoring
-│   ├── core.go                — color compute, solveColorAlpha, difference functions
-│   ├── lab.go                 — CIE Lab conversion with linearization LUT
-│   ├── edge.go                — Sobel edge map, error map, weighted sampling
-│   ├── optimize.go            — hill climbing + simulated annealing
-│   ├── state.go                — state wrapper for optimization (do/undo moves)
-│   ├── shape.go               — Shape interface definition
-│   ├── triangle.go            — triangle shape
-│   ├── rectangle.go           — rectangle + rotated rectangle
-│   ├── ellipse.go             — ellipse + circle + rotated ellipse
-│   ├── polygon.go             — N-gon polygon
-│   ├── quadratic.go           — quadratic Bézier curves
-│   ├── scanline.go            — scanline representation
-│   ├── raster.go              — freetype rasterization helpers
-│   ├── color.go               — Color struct + hex parsing
-│   ├── util.go                — image I/O, math helpers
-│   ├── heatmap.go             — heat visualization (debug)
-│   └── log.go                 — verbosity-controlled logging
-├── _python_backup/            — original Python implementation (reference)
-├── README.md                  — this file
-└── output/                    — all generated images
+│   ├── model.go               - orchestrator: annealing, error/edge maps, winner refinement
+│   ├── worker.go              - parallel workers: biased placement, Lab scoring
+│   ├── core.go                - color compute, solveColorAlpha, difference functions
+│   ├── lab.go                 - CIE Lab conversion with linearization LUT
+│   ├── edge.go                - Sobel edge map, error map, weighted sampling
+│   ├── optimize.go            - hill climbing + simulated annealing
+│   ├── state.go                - state wrapper for optimization (do/undo moves)
+│   ├── shape.go               - Shape interface definition
+│   ├── triangle.go            - triangle shape
+│   ├── rectangle.go           - rectangle + rotated rectangle
+│   ├── ellipse.go             - ellipse + circle + rotated ellipse
+│   ├── polygon.go             - N-gon polygon
+│   ├── quadratic.go           - quadratic Bézier curves
+│   ├── scanline.go            - scanline representation
+│   ├── raster.go              - freetype rasterization helpers
+│   ├── color.go               - Color struct + hex parsing
+│   ├── util.go                - image I/O, math helpers
+│   ├── heatmap.go             - heat visualization (debug)
+│   └── log.go                 - verbosity-controlled logging
+├── _python_backup/            - original Python implementation (reference)
+├── README.md                  - this file
+└── output/                    - all generated images
 ```
 
 ## CLI flags
@@ -107,17 +107,17 @@ Primitive/
 
 ## Enhancements over fogleman/primitive
 
-1. **CIE Lab perceptual scoring** — uses Lab ΔE² instead of RGB RMSE. Precomputed
+1. **CIE Lab perceptual scoring** - uses Lab ΔE² instead of RGB RMSE. Precomputed
    linearization LUT + cached "before" Lab buffer for speed.
-2. **Analytical color+alpha solve** (`solveColorAlpha`) — optimally solves for both
+2. **Analytical color+alpha solve** (`solveColorAlpha`) - optimally solves for both
    RGB color AND alpha per shape, not just color at fixed alpha.
-3. **3-phase size annealing** — shape max size follows 60%→25%→10%→3% schedule
+3. **3-phase size annealing** - shape max size follows 60%→25%→10%→3% schedule
    (phase boundaries at 40% and 75% completion). Large shapes first, details last.
-4. **Edge-aware placement** — Sobel edge map biases 15% of shapes toward edges.
-5. **Error-weighted placement** — error map biases 60% of shapes toward highest-error regions.
-6. **Winner refinement** — 30 extra hill climb mutations on the best candidate per step.
-7. **Incremental error map** — only recomputes bounding box of accepted shape.
-8. **Auto comparison output** — saves side-by-side (original | reconstruction) PNG.
+4. **Edge-aware placement** - Sobel edge map biases 15% of shapes toward edges.
+5. **Error-weighted placement** - error map biases 60% of shapes toward highest-error regions.
+6. **Winner refinement** - 30 extra hill climb mutations on the best candidate per step.
+7. **Incremental error map** - only recomputes bounding box of accepted shape.
+8. **Auto comparison output** - saves side-by-side (original | reconstruction) PNG.
 
 ## How the algorithm works
 
@@ -137,9 +137,9 @@ Primitive/
 ## Key design decisions
 
 - **Lab scoring in workers** uses cached `CurrentLab` buffer (precomputed once per step)
-  so only "after" pixels need Lab conversion — halves the conversion cost.
+  so only "after" pixels need Lab conversion - halves the conversion cost.
 - **Linearization LUT** eliminates `math.Pow` calls in Lab conversion (256-entry table).
-- **Goroutines with shared memory** — zero serialization overhead (unlike Python multiprocessing).
+- **Goroutines with shared memory** - zero serialization overhead (unlike Python multiprocessing).
 - **3-phase annealing** produces better results than fixed-size shapes because large shapes
   fill broad color regions first, then progressively smaller shapes add detail.
 
