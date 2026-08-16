@@ -12,11 +12,9 @@ natively in Go.
 |---|---|
 | ![Boba comparison](examples/boba_comparison.png) | ![Boba build-up](examples/boba_demo.gif) |
 
-**Mt. Rainier** - original vs. reconstruction (~100k shapes, combo mode) and build-up process:
+**Mt. Rainier** - original vs. reconstruction (~100k shapes, combo mode):
 
-| Original vs. reconstruction | Build-up process |
-|---|---|
-| ![Rainier comparison](examples/rainier_comparison.png) | ![Rainier build-up](examples/rainier_demo.gif) |
+![Rainier comparison](examples/rainier_comparison.png)
 
 ## Dependencies
 
