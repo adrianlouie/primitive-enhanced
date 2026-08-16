@@ -6,13 +6,17 @@ natively in Go.
 
 ## Examples
 
-**Boba** - original vs. reconstruction (500 shapes, combo mode):
+**Boba** - original vs. reconstruction (500 shapes, combo mode) and build-up process:
 
-![Boba comparison](examples/boba_comparison.png)
+| Original vs. reconstruction | Build-up process |
+|---|---|
+| ![Boba comparison](examples/boba_comparison.png) | ![Boba build-up](examples/boba_demo.gif) |
 
-**Mt. Rainier** - original vs. reconstruction (~100k shapes, combo mode):
+**Mt. Rainier** - original vs. reconstruction (~100k shapes, combo mode) and build-up process:
 
-![Rainier comparison](examples/rainier_comparison.png)
+| Original vs. reconstruction | Build-up process |
+|---|---|
+| ![Rainier comparison](examples/rainier_comparison.png) | ![Rainier build-up](examples/rainier_demo.gif) |
 
 ## Dependencies
 
